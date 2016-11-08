@@ -1,0 +1,27 @@
+---
+title: "My Fun project: APA Tables"
+author: "Brooke Charbonneau"
+date: "November 8, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# My first heading
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(apaTables)
+my.data <- read_csv("regLectureData.csv")
+my.reg <- lm(VidScore ~ age + iq, data=my.data)
+
+x <- apa.reg.table(my.reg, filename="my_reg_table.doc", table.number = 1)
+
+psych::pairs.panels(my.data)
+
+qplot(iq, age, data=my.data)
+```
+
+See Table 1
